@@ -1,0 +1,187 @@
+QWidget {
+    background: #0B1020;
+    color: #F8FAFC;
+    font-family: "Segoe UI";
+    font-size: 14px;
+}
+
+#appRoot {
+    background: #0B1020;
+}
+
+#header {
+    background: #111A2E;
+    border: 1px solid #293750;
+    border-radius: 16px;
+}
+
+#logoMark {
+    background: #3B82F6;
+    color: #FFFFFF;
+    border-radius: 11px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#brand {
+    color: #F8FAFC;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#brandSubtitle, #footer {
+    color: #94A3B8;
+    font-size: 11px;
+}
+
+#navButton {
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: #94A3B8;
+    padding: 10px 15px;
+}
+
+#navButton:hover {
+    background: #17233A;
+    color: #F8FAFC;
+}
+
+#navButton:checked {
+    background: #1D3B72;
+    color: #FFFFFF;
+    border-bottom: 2px solid #22D3EE;
+}
+
+#pageTitle {
+    color: #F8FAFC;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+#pageSubtitle {
+    color: #94A3B8;
+    font-size: 16px;
+}
+
+#showcaseCard, #uploadCard, #previewCard, #sampleCard, #aboutCard, #technicalCard, #featureCard {
+    background: #17233A;
+    border: 1px solid #293750;
+    border-radius: 16px;
+}
+
+#showcaseCard {
+    background: #111A2E;
+    border-color: #31466D;
+}
+
+#showcaseCard QLabel {
+    background: #0B1020;
+    border-radius: 10px;
+}
+
+#featureCard, #technicalCard {
+    padding: 8px;
+}
+
+#featureIcon, #emptyIcon {
+    color: #22D3EE;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#cardTitle {
+    color: #F8FAFC;
+    font-size: 16px;
+    font-weight: 650;
+}
+
+#cardBody, #metadata {
+    color: #94A3B8;
+    font-size: 13px;
+}
+
+#eyebrow {
+    color: #22D3EE;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#primaryButton, #gradientButton {
+    background: #3B82F6;
+    border: 0;
+    border-radius: 9px;
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 12px 18px;
+}
+
+#primaryButton:hover, #gradientButton:hover {
+    background: #8B5CF6;
+}
+
+#secondaryButton {
+    background: #17233A;
+    border: 1px solid #3B82F6;
+    border-radius: 9px;
+    color: #DBEAFE;
+    padding: 11px 16px;
+}
+
+#secondaryButton:hover {
+    background: #1D3B72;
+}
+
+QPushButton:disabled {
+    background: #1A263B;
+    border-color: #293750;
+    color: #64748B;
+}
+
+#uploadCard {
+    border-style: dashed;
+    border-color: #3B82F6;
+}
+
+#uploadIcon {
+    background: #1D3B72;
+    border-radius: 14px;
+    color: #22D3EE;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+#dropPreview {
+    background: #111A2E;
+    border: 1px dashed #293750;
+    border-radius: 11px;
+    color: #64748B;
+    min-width: 250px;
+}
+
+#stateLabel {
+    background: #1D3B72;
+    border-radius: 5px;
+    color: #93C5FD;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 7px;
+}
+
+#status {
+    color: #22D3EE;
+    font-weight: 600;
+}
+
+#spinner {
+    border: 0;
+}
+
+#footer {
+    padding-left: 4px;
+}
+
+QScrollArea, QScrollArea > QWidget > QWidget {
+    background: #0B1020;
+}
