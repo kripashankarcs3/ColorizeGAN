@@ -6,4 +6,5 @@ __pycache__/
 .idea/
 dataset/
 outputs/
-*.log.claude/
+*.log
+.claude/
