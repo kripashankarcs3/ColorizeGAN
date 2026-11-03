@@ -1,4 +1,4 @@
-"""Inference helpers for the ReMemory AI generator."""
+"""Inference helpers for the ColorizeGAN generator."""
 
 from pathlib import Path
 from typing import Optional, Union

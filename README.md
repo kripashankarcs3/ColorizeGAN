@@ -99,10 +99,9 @@ created them. The application reports a clear setup error if the generator file
 is missing. The original source repository refers to an external dataset, but no
 training dataset is included in this checkout.
 
-## Screenshots and samples
+## Samples
 
-The original screenshots remain in `app/ui/assets/readme_assets/`. The desktop
-gallery uses the included `app/test/Dog_GL.jpg` and
+The desktop gallery uses the included `app/test/Dog_GL.jpg` and
 `app/test/building_GL.jpg` as real inference inputs.
 
 ## Limitations and future scope
@@ -115,4 +114,5 @@ sliders, and an independently reproducible training/evaluation pipeline.
 
 ## Acknowledgements
 
-Based on the original [ReMemory AI](https://github.com/deepraj-07/ReMemory-AI) project.
+Based on the [ReMemory AI](https://github.com/deepraj-07/ReMemory-AI) project,
+which builds on [Color Craft GAN](https://github.com/Asirwad/Color-Craft-GAN).
