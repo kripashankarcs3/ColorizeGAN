@@ -1,5 +1,7 @@
 # ColorizeGAN: GAN-Based Image Colorization
 
+[![CI](https://github.com/kripashankarcs3/ColorizeGAN/actions/workflows/ci.yml/badge.svg)](https://github.com/kripashankarcs3/ColorizeGAN/actions/workflows/ci.yml)
+
 > **Bringing Black-and-White Memories Back to Life.**
 
 ColorizeGAN is a GAN-based image-colorization application designed to transform
