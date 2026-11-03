@@ -129,3 +129,7 @@ sliders, and an independently reproducible training/evaluation pipeline.
 
 Based on the [ReMemory AI](https://github.com/deepraj-07/ReMemory-AI) project,
 which builds on [Color Craft GAN](https://github.com/Asirwad/Color-Craft-GAN).
+
+## License
+
+Released under the [MIT License](LICENSE).
