@@ -66,7 +66,9 @@ ColorizeGAN/
 │   ├── train.py              # original training loop
 │   └── ui/                    # PyQt5 application and assets
 ├── tests/
+├── download_dataset.py        # training image download
 ├── requirements.txt
+├── requirements-train.txt     # extra training dependencies
 ├── setup.bat
 └── run.bat
 ```
@@ -96,8 +98,17 @@ The repository includes both `app/model/CCGAN_Model.h5` and
 `app/checkpoints/model_checkpoint.h5`. They are treated as inherited project
 artifacts; this repository does not claim to have retrained or independently
 created them. The application reports a clear setup error if the generator file
-is missing. The original source repository refers to an external dataset, but no
-training dataset is included in this checkout.
+is missing. No training dataset is included in this checkout.
+
+## Training
+
+```bat
+pip install -r requirements-train.txt
+python download_dataset.py
+python -m app.train
+```
+
+Images are downloaded to `dataset/train/color`, which `app/train.py` reads.
 
 ## Samples
 
