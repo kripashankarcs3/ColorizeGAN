@@ -102,6 +102,21 @@ artifacts; this repository does not claim to have retrained or independently
 created them. The application reports a clear setup error if the generator file
 is missing. No training dataset is included in this checkout.
 
+### Exporting to ONNX
+
+The browser version runs the generator through ONNX. To regenerate
+`web/public/models/colorize.onnx` and the parity fixtures in
+`web/tests/fixtures/`:
+
+```bat
+pip install -r requirements-train.txt
+python -m tools.export_onnx
+```
+
+The script compares ONNX Runtime with Keras on five inputs and fails if any
+value differs by more than `1e-4`. Add `--fp16` to also write a smaller
+`colorize.fp16.onnx`.
+
 ## Training
 
 ```bat
