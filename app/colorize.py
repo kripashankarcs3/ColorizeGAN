@@ -1,5 +1,6 @@
-"""Inference helpers for the ReMemory AI generator."""
+"""Inference helpers for the ColorizeGAN generator."""
 
+from functools import lru_cache
 from pathlib import Path
 from typing import Optional, Union
 
@@ -12,6 +13,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "app" / "model" / "CCGAN_Model.h5"
 SUPPORTED_EXTENSIONS = {".png", ".jpg", ".jpeg"}
 IMAGE_SIZE = (120, 120)
+
+
+@lru_cache(maxsize=None)
+def _load_generator(model_file: Path):
+    return load_model(model_file, compile=False)
 
 
 def _validate_input_path(filepath: Union[str, Path]) -> Path:
@@ -48,7 +54,7 @@ def colorize(
     except UnidentifiedImageError as exc:
         raise ValueError("The selected file is not a readable image.") from exc
 
-    generator = load_model(model_file, compile=False)
+    generator = _load_generator(model_file)
     prediction = generator.predict(model_input[None, ..., None], verbose=0)
     if prediction.ndim != 4 or prediction.shape[0] != 1 or prediction.shape[-1] != 3:
         raise RuntimeError(

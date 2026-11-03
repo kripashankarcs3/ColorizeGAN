@@ -1,4 +1,4 @@
-"""Premium ReMemory AI desktop studio."""
+"""Premium ColorizeGAN desktop studio."""
 
 from pathlib import Path
 import sys
@@ -91,7 +91,7 @@ class DropFrame(QFrame):
 
 
 class MainWindow(QMainWindow):
-    """Main window containing the four ReMemory AI studio surfaces."""
+    """Main window containing the four ColorizeGAN studio surfaces."""
 
     def __init__(self):
         super().__init__()
@@ -99,7 +99,7 @@ class MainWindow(QMainWindow):
         self.output_path: Optional[Path] = None
         self.worker: Optional[ColorizeWorker] = None
         self.nav_buttons = []
-        self.setWindowTitle("ReMemory AI | AI Photo Restoration Studio")
+        self.setWindowTitle("ColorizeGAN | AI Photo Restoration Studio")
         self.setWindowIcon(QIcon(str(ASSET_ROOT / "icon.ico")))
         self.setMinimumSize(980, 680)
         self.resize(1240, 820)
@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(18, 12, 18, 12)
 
-        logo = QLabel("R")
+        logo = QLabel("C")
         logo.setObjectName("logoMark")
         logo.setAlignment(Qt.AlignCenter)
         logo.setFixedSize(38, 38)
@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
 
         brand_layout = QVBoxLayout()
         brand_layout.setSpacing(0)
-        brand = QLabel("ReMemory AI")
+        brand = QLabel("ColorizeGAN")
         brand.setObjectName("brand")
         brand_layout.addWidget(brand)
         tagline = QLabel("AI Photo Restoration Studio")
@@ -156,7 +156,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(header)
         layout.addWidget(self.pages, 1)
 
-        footer = QLabel("ReMemory AI  /  GAN-powered restoration  /  CPU compatible")
+        footer = QLabel("ColorizeGAN  /  GAN-powered restoration  /  CPU compatible")
         footer.setObjectName("footer")
         layout.addWidget(footer)
         return root
@@ -442,7 +442,7 @@ class MainWindow(QMainWindow):
         layout.setSpacing(18)
         layout.addWidget(
             self._section_heading(
-                "About ReMemory AI",
+                "About ColorizeGAN",
                 "A transparent, compact GAN workflow for restoring the feeling in old photographs.",
             )
         )
@@ -451,7 +451,7 @@ class MainWindow(QMainWindow):
         overview_layout = QVBoxLayout(overview)
         overview_layout.addWidget(QLabel("THE STUDIO", objectName="eyebrow"))
         body = QLabel(
-            "ReMemory AI converts a grayscale photograph into a plausible RGB image "
+            "ColorizeGAN converts a grayscale photograph into a plausible RGB image "
             "with the bundled trained generator. It preserves the original architecture: "
             "the generator learns color mappings, while the discriminator learns to "
             "distinguish real RGB images from generated ones during training."

@@ -4,7 +4,8 @@ from PIL import Image
 from tqdm import tqdm
 
 DATASET = "ayushshah/coco-2017-image-colorization-224"
-OUTPUT = Path("dataset")
+PROJECT_ROOT = Path(__file__).resolve().parent
+OUTPUT = PROJECT_ROOT / "dataset"
 TRAIN_LIMIT = 2000
 VAL_LIMIT = 200
 

@@ -12,4 +12,4 @@ call ".venv\Scripts\activate.bat"
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 echo.
-echo ReMemory AI is ready. Run run.bat to start the desktop app.
+echo ColorizeGAN is ready. Run run.bat to start the desktop app.
