@@ -33,10 +33,7 @@ export function CompareSlider({
   const [position, setPosition] = useState(initial)
 
   return (
-    <div
-      className={`${styles.root} ${className ?? ''}`}
-      style={{ '--pos': `${position}%` } as CSSProperties}
-    >
+    <div className={`${styles.root} ${className ?? ''}`} style={{ '--pos': `${position}%` } as CSSProperties}>
       <img className={styles.after} src={afterSrc} alt={afterAlt} draggable={false} />
       <img
         className={`${styles.before} ${greyBefore ? styles.grey : ''}`}
@@ -54,8 +51,8 @@ export function CompareSlider({
 
       <div className={styles.divider} aria-hidden="true">
         <span className={styles.handle}>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <path d="M9 6l-5 6 5 6M15 6l5 6-5 6" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75">
+            <path d="M9.5 7.5 5 12l4.5 4.5M14.5 7.5 19 12l-4.5 4.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
       </div>

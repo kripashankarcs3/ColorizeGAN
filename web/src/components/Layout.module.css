@@ -1,104 +1,135 @@
 .skip {
   position: absolute;
-  left: 12px;
-  top: -60px;
+  left: var(--space-3);
+  top: -64px;
   z-index: 100;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 650;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-weight: 600;
+  font-size: var(--text-base);
   text-decoration: none;
 }
 
 .skip:focus {
-  top: 12px;
+  top: var(--space-3);
 }
 
+/* ---------- Header ---------- */
 .header {
   position: sticky;
   top: 0;
-  z-index: 20;
-  border-bottom: 1px solid rgb(41 55 80 / 0.7);
-  background: rgb(11 16 32 / 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  z-index: 30;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.2) blur(10px);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
 }
 
 .headerInner {
   max-width: var(--page-width);
+  height: var(--header-h);
   margin: 0 auto;
-  padding: 12px var(--gutter);
+  padding: 0 var(--gutter);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: var(--space-8);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2);
   color: var(--text);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1.12rem;
+  font-weight: 650;
+  font-size: var(--text-base);
   letter-spacing: -0.01em;
 }
 
 .brand img {
-  border-radius: 10px;
-  box-shadow: 0 6px 18px -8px rgb(59 130 246 / 0.9);
-}
-
-.brand:hover {
-  color: var(--text);
-}
-
-.brandGan {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  border-radius: 6px;
 }
 
 .nav {
+  flex: 1;
+}
+
+.navList {
   display: flex;
-  gap: 4px;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .navLink {
   position: relative;
-  padding: 8px 14px;
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
   text-decoration: none;
-  font-weight: 550;
-  font-size: 0.95rem;
+  font-size: var(--text-base);
+  font-weight: 500;
   transition:
-    color 0.15s ease,
-    background-color 0.15s ease;
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
 }
 
 .navLink:hover {
   color: var(--text);
-  background: var(--surface);
+  background: var(--surface-2);
 }
 
 .active {
-  color: #fff;
-  background: var(--accent-soft);
+  color: var(--text);
 }
 
+/* Active route: a 2px amber rule sitting on the header's bottom border. */
 .active::after {
   content: '';
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 3px;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: calc((var(--header-h) - 32px) / -2 - 1px);
   height: 2px;
-  border-radius: 2px;
-  background: var(--cyan);
+  background: var(--accent);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+.iconButton:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.menuButton {
+  display: none;
 }
 
 .main {
@@ -106,69 +137,115 @@
   outline: none;
 }
 
+/* ---------- Footer ---------- */
 .footer {
   border-top: 1px solid var(--border);
-  background: rgb(17 26 46 / 0.6);
 }
 
 .footerInner {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 22px var(--gutter);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px 24px;
-  font-size: 0.88rem;
+  padding: var(--space-8) var(--gutter) var(--space-10);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  font-size: var(--text-sm);
   color: var(--text-muted);
+}
+
+.footerBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+  font-weight: 650;
+}
+
+.footerBrand img {
+  border-radius: 5px;
 }
 
 .privacy {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--text);
+  gap: var(--space-2);
 }
 
 .privacy svg {
-  color: var(--success);
   flex: none;
 }
 
-@media (max-width: 640px) {
-  .header {
-    position: static;
+.credits a {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .footerInner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: var(--space-3);
+  }
+}
+
+/* ---------- Mobile: menu button + dropdown nav ---------- */
+@media (max-width: 720px) {
+  .headerInner {
+    gap: var(--space-4);
   }
 
-  .headerInner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding-top: 10px;
-    padding-bottom: 8px;
+  .menuButton {
+    display: inline-grid;
   }
 
   .nav {
-    justify-content: space-between;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    padding: var(--space-2) var(--gutter) var(--space-4);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav[data-open] {
+    display: block;
+  }
+
+  .navList {
+    flex-direction: column;
+    gap: 0;
   }
 
   .navLink {
-    flex: 1;
-    text-align: center;
-    padding: 8px 4px;
-    font-size: 0.9rem;
+    display: flex;
+    height: 48px;
+    padding: 0 var(--space-2);
+    font-size: var(--text-md);
+    border-radius: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .navList li:last-child .navLink {
+    border-bottom: 0;
+  }
+
+  .navLink:hover {
+    background: transparent;
   }
 
   .active::after {
-    left: 25%;
-    right: 25%;
+    left: 0;
+    right: auto;
+    top: 14px;
+    bottom: 14px;
+    width: 2px;
+    height: auto;
   }
 
-  .privacy {
-    align-items: flex-start;
-  }
-
-  .privacy svg {
-    margin-top: 3px;
+  .active {
+    padding-left: var(--space-4);
   }
 }

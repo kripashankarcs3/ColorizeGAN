@@ -1,34 +1,33 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { CompareSlider } from '../components/CompareSlider'
 import { DropZone } from '../components/DropZone'
 import { ErrorNotice, InfoNotice, ModelStatus, Spinner } from '../components/Feedback'
-import { formatDuration, useColorizeJob, usePreloadModel, type JobPhase } from '../lib/hooks'
+import { DownloadIcon } from '../components/Icons'
+import { formatDuration, useColorizeJob, usePreloadModel } from '../lib/hooks'
 import { MAX_SIDE } from '../lib/preprocess'
 import { colorizedFileName } from '../lib/validate'
 import styles from './Colorize.module.css'
 
-const STATE_LABEL: Record<JobPhase, string> = {
-  empty: 'Waiting',
-  selected: 'Ready',
-  processing: 'Processing',
-  done: 'Complete',
-  error: 'Error',
-}
+type View = 'compare' | 'split'
 
 export function Colorize() {
   usePreloadModel()
   const { job, select, colorize, clear } = useColorizeJob()
   const { phase, file, originalUrl, originalSize, result, resultUrl, error } = job
+  const [view, setView] = useState<View>('compare')
   const busy = phase === 'processing'
+  const done = phase === 'done' && result !== null && resultUrl !== null
   const tooBig = originalSize !== null && Math.max(originalSize.width, originalSize.height) > MAX_SIDE
+  const name = file?.name ?? 'your photo'
 
   return (
     <div className="page">
       <header className={styles.head}>
         <div>
-          <span className="eyebrow">Colorize</span>
-          <h1 className={styles.title}>Restore your memories</h1>
-          <p className={styles.subtitle}>Upload an old photograph and let the GAN bring it back to colour.</p>
+          <h1 className={styles.title}>Colorize a photo</h1>
+          <p className={styles.subtitle}>
+            Choose a black-and-white photo. It is colorized here in your browser and never uploaded.
+          </p>
         </div>
         <div className={styles.status}>
           <ModelStatus />
@@ -42,147 +41,143 @@ export function Colorize() {
 
         {tooBig && originalSize && (
           <InfoNotice>
-            This photo is {originalSize.width} x {originalSize.height} px. To keep your browser from running out of
-            memory it will be scaled down to at most {MAX_SIDE} px on the long side before colorizing, so the
-            download will be smaller than the original.
+            This photo is{' '}
+            <span className="num">
+              {originalSize.width} × {originalSize.height} px
+            </span>
+            . To keep your browser from running out of memory it will be scaled down to at most {MAX_SIDE} px on the
+            long side before colorizing, so the download will be smaller than the original.
           </InfoNotice>
         )}
 
-        <div className={styles.previews}>
-          <PreviewCard
-            title="Original"
-            state={file ? 'Loaded' : 'Waiting'}
-            meta={originalSize ? `${originalSize.width} x ${originalSize.height} px  ·  ${file?.name}` : 'No image selected'}
-          >
-            {originalUrl ? (
-              <img src={originalUrl} alt={`Your uploaded photo ${file?.name ?? ''}`} />
-            ) : (
-              <Placeholder text="Your photo will appear here" />
-            )}
-          </PreviewCard>
-
-          <PreviewCard
-            title="AI colorized result"
-            state={file ? STATE_LABEL[phase] : 'Waiting'}
-            tone={phase === 'done' ? 'success' : phase === 'error' ? 'danger' : phase === 'processing' ? 'busy' : undefined}
-            meta={
-              result
-                ? `${result.width} x ${result.height} px  ·  RGB PNG`
-                : busy
-                  ? 'Running the generator…'
-                  : 'Waiting for generator inference'
-            }
-          >
-            {resultUrl ? (
-              <img src={resultUrl} alt={`Colorized version of ${file?.name ?? 'your photo'}`} />
-            ) : busy ? (
-              <Placeholder text="Colorizing…" busy />
-            ) : (
-              <Placeholder text="The colorized result will appear here" />
-            )}
-          </PreviewCard>
-        </div>
-
-        <div className={styles.actions}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => colorize()}
-            disabled={!file || busy}
-            aria-busy={busy}
-          >
-            {busy ? (
-              <>
-                <Spinner /> Colorizing…
-              </>
-            ) : (
-              <>
-                Colorize image <span className="btn-arrow" aria-hidden="true">&rarr;</span>
-              </>
-            )}
-          </button>
-          {resultUrl && file ? (
-            <a className="btn btn-secondary" href={resultUrl} download={colorizedFileName(file.name)}>
-              <DownloadIcon /> Download PNG
-            </a>
-          ) : (
-            <button type="button" className="btn btn-secondary" disabled>
-              <DownloadIcon /> Download PNG
-            </button>
-          )}
-          <button type="button" className="btn btn-ghost" onClick={clear} disabled={!file && !error}>
-            Clear
-          </button>
-
-          <p className={styles.timing} role="status" aria-live="polite">
-            {result
-              ? `Done in ${formatDuration(result.totalMs)} (model ${formatDuration(result.inferenceMs)})`
-              : busy
-                ? 'Working on your photo…'
-                : ''}
-          </p>
-        </div>
-
-        {result && resultUrl && originalUrl && (
-          <section className={styles.compare} aria-labelledby="compare-title">
-            <div className={styles.compareHead}>
-              <h2 id="compare-title">Before and after</h2>
-              <p>The left side shows the greyscale input the model actually sees.</p>
+        <section className={styles.workspace} aria-label="Workspace" data-empty={file === null || undefined}>
+          <div className={styles.toolbar}>
+            <div className={styles.toolbarActions}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => colorize()}
+                disabled={!file || busy}
+                aria-busy={busy}
+              >
+                {busy ? (
+                  <>
+                    <Spinner /> Colorizing…
+                  </>
+                ) : (
+                  'Colorize image'
+                )}
+              </button>
+              {resultUrl && file ? (
+                <a className="btn btn-secondary" href={resultUrl} download={colorizedFileName(file.name)}>
+                  <DownloadIcon /> Download PNG
+                </a>
+              ) : (
+                <button type="button" className="btn btn-secondary" disabled>
+                  <DownloadIcon /> Download PNG
+                </button>
+              )}
+              <button type="button" className="btn btn-ghost" onClick={clear} disabled={!file && !error}>
+                Clear
+              </button>
             </div>
-            <CompareSlider
-              className={styles.compareSlider}
-              beforeSrc={originalUrl}
-              afterSrc={resultUrl}
-              beforeAlt={`Greyscale version of ${file?.name ?? 'your photo'}`}
-              afterAlt={`Colorized version of ${file?.name ?? 'your photo'}`}
-              beforeLabel="Greyscale"
-              afterLabel="Colorized"
-            />
-          </section>
-        )}
+
+            {done && (
+              <div className={styles.segmented} role="group" aria-label="View">
+                <button type="button" aria-pressed={view === 'compare'} onClick={() => setView('compare')}>
+                  Compare
+                </button>
+                <button type="button" aria-pressed={view === 'split'} onClick={() => setView('split')}>
+                  Side by side
+                </button>
+              </div>
+            )}
+          </div>
+
+          {busy && <div className={styles.progress} aria-hidden="true" />}
+
+          {file && (
+            <>
+              <div className={styles.viewer}>
+                {done && view === 'compare' && originalUrl ? (
+                  <CompareSlider
+                    className={styles.compareSlider}
+                    beforeSrc={originalUrl}
+                    afterSrc={resultUrl}
+                    beforeAlt={`Greyscale version of ${name}`}
+                    afterAlt={`Colorized version of ${name}`}
+                    beforeLabel="Greyscale"
+                    afterLabel="Colorized"
+                  />
+                ) : (
+                  <div className={styles.split}>
+                    <Pane title="Original">
+                      {originalUrl && <img src={originalUrl} alt={`Your uploaded photo ${file.name}`} />}
+                    </Pane>
+                    <Pane title="Colorized result">
+                      {resultUrl ? (
+                        <img src={resultUrl} alt={`Colorized version of ${name}`} />
+                      ) : busy ? (
+                        <div className={styles.placeholder}>
+                          <Spinner />
+                          <span>Running the generator…</span>
+                        </div>
+                      ) : (
+                        <div className={styles.placeholder}>
+                          <span>Press Colorize image to see the result here.</span>
+                        </div>
+                      )}
+                    </Pane>
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.meta}>
+                <dl className={styles.metaList}>
+                  <div>
+                    <dt>File</dt>
+                    <dd className={styles.fileName} title={file.name}>
+                      {file.name}
+                    </dd>
+                  </div>
+                  {originalSize && (
+                    <div>
+                      <dt>Size</dt>
+                      <dd className="num">
+                        {originalSize.width} × {originalSize.height} px
+                      </dd>
+                    </div>
+                  )}
+                  {result && (
+                    <div>
+                      <dt>Output</dt>
+                      <dd className="num">
+                        {result.width} × {result.height} px PNG
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+                <p className={`${styles.timing} num`} role="status" aria-live="polite">
+                  {result
+                    ? `Done in ${formatDuration(result.totalMs)} (model ${formatDuration(result.inferenceMs)})`
+                    : busy
+                      ? 'Working on your photo…'
+                      : ''}
+                </p>
+              </div>
+            </>
+          )}
+        </section>
       </div>
     </div>
   )
 }
 
-function PreviewCard({
-  title,
-  state,
-  tone,
-  meta,
-  children,
-}: {
-  title: string
-  state: string
-  tone?: 'success' | 'danger' | 'busy'
-  meta: string
-  children: ReactNode
-}) {
+function Pane({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className={styles.card} aria-label={title}>
-      <div className={styles.cardHead}>
-        <h2 className={styles.cardTitle}>{title}</h2>
-        <span className={`${styles.badge} ${tone ? styles[tone] : ''}`}>{state}</span>
-      </div>
+    <section className={styles.pane} aria-label={title}>
+      <h2 className={styles.paneTitle}>{title}</h2>
       <div className={styles.imageBox}>{children}</div>
-      <p className={styles.meta}>{meta}</p>
     </section>
-  )
-}
-
-function Placeholder({ text, busy = false }: { text: string; busy?: boolean }) {
-  return (
-    <div className={`${styles.placeholder} ${busy ? styles.shimmer : ''}`}>
-      {busy && <Spinner />}
-      <span>{text}</span>
-    </div>
-  )
-}
-
-function DownloadIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M12 4v11M7 10l5 5 5-5M5 20h14" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   )
 }

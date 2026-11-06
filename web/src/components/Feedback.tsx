@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { loadModel } from '../lib/colorizer'
 import type { AppError } from '../lib/errors'
 import { useModelStatus } from '../lib/hooks'
+import { AlertIcon, InfoIcon } from './Icons'
 import styles from './Feedback.module.css'
 
 export function Spinner({ label }: { label?: string }) {
@@ -17,10 +18,7 @@ export function Spinner({ label }: { label?: string }) {
 export function ErrorNotice({ error, action }: { error: AppError; action?: ReactNode }) {
   return (
     <div className={`${styles.notice} ${styles.error}`} role="alert">
-      <svg className={styles.icon} viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="9.5" />
-        <path d="M12 7.5v5.5M12 16.5v.01" strokeLinecap="round" />
-      </svg>
+      <AlertIcon className={styles.icon} size={20} />
       <div>
         <p className={styles.title}>{error.title}</p>
         <p className={styles.body}>{error.message}</p>
@@ -33,10 +31,7 @@ export function ErrorNotice({ error, action }: { error: AppError; action?: React
 export function InfoNotice({ children }: { children: ReactNode }) {
   return (
     <div className={`${styles.notice} ${styles.info}`} role="status">
-      <svg className={styles.icon} viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="9.5" />
-        <path d="M12 11v5.5M12 7.5v.01" strokeLinecap="round" />
-      </svg>
+      <InfoIcon className={styles.icon} size={20} />
       <div className={styles.body}>{children}</div>
     </div>
   )
@@ -71,7 +66,7 @@ export function ModelStatus() {
   if (status.state === 'ready') {
     return (
       <p className={`${styles.pill} ${styles.ready}`} role="status">
-        <span className={styles.dot} aria-hidden="true" /> Model ready, running locally in your browser
+        <span className={styles.dot} aria-hidden="true" /> Model ready. Runs locally in this browser.
       </p>
     )
   }
@@ -87,7 +82,7 @@ export function ModelStatus() {
       <div className={styles.loadingRow}>
         <Spinner />
         <span>
-          Downloading the model (first visit only) <span className={styles.muted}>{detail}</span>
+          Downloading the model, first visit only <span className={`${styles.muted} num`}>{detail}</span>
         </span>
       </div>
       <div
@@ -98,7 +93,10 @@ export function ModelStatus() {
         aria-valuemax={100}
         aria-valuenow={percent ?? undefined}
       >
-        <span className={percent === null ? styles.indeterminate : undefined} style={{ width: percent === null ? undefined : `${percent}%` }} />
+        <span
+          className={percent === null ? styles.indeterminate : undefined}
+          style={{ width: percent === null ? undefined : `${percent}%` }}
+        />
       </div>
     </div>
   )

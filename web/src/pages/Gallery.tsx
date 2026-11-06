@@ -13,10 +13,10 @@ export function Gallery() {
     <div className="page">
       <header className={styles.head}>
         <div>
-          <span className="eyebrow">Gallery</span>
           <h1 className={styles.title}>Try it on a sample</h1>
           <p className={styles.subtitle}>
-            Each button runs the real pipeline in your browser: greyscale, the GAN, and a full-size PNG.
+            Each sample runs the real pipeline in your browser: greyscale, the generator at 120 px, then a full-size
+            PNG.
           </p>
         </div>
         <div className={styles.status}>
@@ -30,9 +30,12 @@ export function Gallery() {
         ))}
       </div>
 
-      <p className={styles.more}>
-        Have your own photo? <Link to="/colorize">Colorize it here</Link>.
-      </p>
+      <div className={styles.more}>
+        <p>Have your own photo?</p>
+        <Link to="/colorize" className="btn btn-secondary">
+          Colorize your own photo
+        </Link>
+      </div>
     </div>
   )
 }
@@ -83,7 +86,7 @@ function SampleCard({ sample }: { sample: (typeof SAMPLES)[number] }) {
           <h2 id={`${sample.id}-title`} className={styles.cardTitle}>
             {sample.title}
           </h2>
-          <span className={styles.size}>{sample.size}</span>
+          <span className={`${styles.size} num`}>{sample.size.replace(' x ', ' × ')}</span>
         </div>
         <p className={styles.description}>{sample.description}</p>
 
@@ -107,8 +110,10 @@ function SampleCard({ sample }: { sample: (typeof SAMPLES)[number] }) {
             </a>
           )}
         </div>
-        <p className={styles.timing} role="status" aria-live="polite">
-          {done ? `Done in ${formatDuration(job.result!.totalMs)} (model ${formatDuration(job.result!.inferenceMs)})` : ''}
+        <p className={`${styles.timing} num`} role="status" aria-live="polite">
+          {done
+            ? `Done in ${formatDuration(job.result!.totalMs)} (model ${formatDuration(job.result!.inferenceMs)})`
+            : ''}
         </p>
       </div>
     </article>

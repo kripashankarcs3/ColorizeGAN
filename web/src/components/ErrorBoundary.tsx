@@ -20,8 +20,8 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
     if (!this.state.error) return this.props.children
     return (
       <div className="page" role="alert">
-        <span className="eyebrow">Something went wrong</span>
-        <h1 style={{ margin: '12px 0' }}>The page hit an unexpected error.</h1>
+        <span className="kicker">Something went wrong</span>
+        <h1 style={{ margin: '8px 0 12px', fontSize: 'var(--text-3xl)' }}>The page hit an unexpected error.</h1>
         <p style={{ color: 'var(--text-muted)', marginBottom: 20 }}>{this.state.error.message}</p>
         <button type="button" className="btn btn-primary" onClick={() => window.location.reload()}>
           Reload the page

@@ -1,129 +1,163 @@
+/* Long-form article: one reading column (~68ch), serif body text. */
+.head,
+.section {
+  /* ~68 characters of the 19px serif body */
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .head {
-  max-width: 44em;
-  margin-bottom: 40px;
+  padding-bottom: var(--space-10);
+  border-bottom: 1px solid var(--border);
 }
 
 .title {
-  margin: 8px 0 12px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: var(--text-4xl);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
 }
 
 .lead {
+  margin-top: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.5;
   color: var(--text-muted);
-  font-size: 1.1rem;
 }
 
 .section {
-  margin-top: 44px;
+  padding-top: var(--space-12);
+  font-family: var(--font-display);
+  font-size: 1.1875rem; /* 19px serif body */
+  line-height: 1.65;
 }
 
 .h2 {
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-  margin-bottom: 18px;
+  margin-bottom: var(--space-5);
+  font-size: var(--text-2xl);
+  letter-spacing: -0.015em;
 }
 
+.h3 {
+  margin: var(--space-8) 0 var(--space-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Numbered pipeline: a real sequence, numbers hang in the margin. */
 .pipeline {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: step;
+  border-top: 1px solid var(--border);
 }
 
 .pipeline li {
-  position: relative;
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-raised);
-}
-
-.pipeline h3 {
-  margin: 10px 0 6px;
-  font-size: 1.02rem;
-}
-
-.pipeline p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .stepNo {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: var(--gradient);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--accent);
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.pipeline h3,
+.specs dt {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: 600;
 }
 
-.card {
-  padding: 20px 22px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-}
-
-.card h3 {
-  margin-bottom: 6px;
-  font-size: 1.05rem;
-  color: var(--accent-text);
-}
-
-.card p {
+.pipeline p {
+  margin-top: 2px;
   color: var(--text-muted);
-  font-size: 0.93rem;
+}
+
+/* Architecture as a definition list rather than a card grid. */
+.specs {
+  margin: 0;
+}
+
+.specs > div {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border);
+}
+
+.specs > div:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.specs dt {
+  line-height: 1.9;
+}
+
+.specs dd {
+  margin: 0;
+  color: var(--text-muted);
 }
 
 .limits ul {
   margin: 0;
-  padding: 20px 22px 20px 40px;
-  border: 1px solid rgb(251 191 36 / 0.35);
-  border-radius: var(--radius-lg);
-  background: rgb(58 42 16 / 0.45);
-  display: grid;
-  gap: 10px;
+  padding-left: 1.2em;
 }
 
-.limits li {
-  color: #e2e8f0;
+.limits li + li {
+  margin-top: var(--space-3);
+}
+
+.limits li::marker {
+  color: var(--text-faint);
 }
 
 .limits strong {
-  color: var(--warning);
+  font-weight: 600;
 }
 
-.credits {
-  max-width: 44em;
-  color: #e2e8f0;
+.credits a {
+  color: var(--text);
+  text-decoration-color: var(--accent);
 }
 
 .stack {
-  margin-top: 14px;
-  color: var(--text-faint);
-  font-size: 0.88rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
 }
 
-@media (max-width: 860px) {
-  .pipeline {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.stack li {
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  background: var(--surface);
 }
 
 @media (max-width: 560px) {
-  .pipeline,
-  .cards {
-    grid-template-columns: 1fr;
+  .section {
+    font-size: var(--text-lg);
+  }
+
+  .specs > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
   }
 }

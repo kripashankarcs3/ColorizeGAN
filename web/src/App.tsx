@@ -29,8 +29,8 @@ export default function App() {
 function NotFound() {
   return (
     <div className="page">
-      <span className="eyebrow">404</span>
-      <h1 style={{ margin: '12px 0 20px' }}>This page does not exist.</h1>
+      <span className="kicker">404</span>
+      <h1 style={{ margin: '8px 0 24px', fontSize: 'var(--text-3xl)' }}>This page does not exist.</h1>
       <Link to="/" className="btn btn-primary">
         Back to home
       </Link>

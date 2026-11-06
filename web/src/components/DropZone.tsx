@@ -1,5 +1,6 @@
 import { useId, useRef, useState, type DragEvent } from 'react'
 import { ACCEPT } from '../lib/validate'
+import { ImageIcon, UploadIcon } from './Icons'
 import styles from './DropZone.module.css'
 
 interface Props {
@@ -37,20 +38,19 @@ export function DropZone({ onFile, disabled = false, compact = false }: Props) {
       onDrop={onDrop}
     >
       <span className={styles.icon} aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8">
-          <path d="M12 16V4M7 9l5-5 5 5" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" strokeLinecap="round" />
-        </svg>
+        {compact ? <ImageIcon size={20} /> : <UploadIcon size={22} />}
       </span>
       <div className={styles.text}>
-        <p className={styles.title}>{compact ? 'Drop another photo to replace it' : 'Drop a black-and-white photo here'}</p>
+        <p className={styles.title}>
+          {compact ? 'Drop another photo to replace it' : 'Drop a black-and-white photo here'}
+        </p>
         <p className={styles.hint} id={hintId}>
-          PNG, JPG or JPEG. Original size is kept. Processed on your device.
+          PNG, JPG or JPEG. Processed on this device; the original size is kept.
         </p>
       </div>
       <button
         type="button"
-        className={`btn ${compact ? 'btn-ghost' : 'btn-secondary'}`}
+        className={`btn ${compact ? 'btn-secondary' : 'btn-primary'}`}
         onClick={() => inputRef.current?.click()}
         disabled={disabled}
         aria-describedby={hintId}
