@@ -15,3 +15,5 @@ public/ort/
 !.vscode/extensions.json
 .idea
 .DS_Store
+test-results/
+playwright-report/
