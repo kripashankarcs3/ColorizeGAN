@@ -1,0 +1,16 @@
+# Only web/ is needed to build the site; keep the Python app and training files out of uploads.
+.venv
+.git
+.github
+/app
+/tests
+/tools
+/dataset
+/outputs
+*.bat
+*.py
+requirements*.txt
+web/node_modules
+web/dist
+web/test-results
+web/playwright-report
