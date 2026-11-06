@@ -48,8 +48,8 @@
   letter-spacing: -0.01em;
 }
 
-.brand img {
-  border-radius: 6px;
+.brand svg {
+  flex: none;
 }
 
 .nav {
@@ -162,8 +162,8 @@
   font-weight: 650;
 }
 
-.footerBrand img {
-  border-radius: 5px;
+.footerBrand svg {
+  flex: none;
 }
 
 .privacy {

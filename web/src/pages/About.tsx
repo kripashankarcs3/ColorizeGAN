@@ -1,4 +1,4 @@
-import { COLOR_CRAFT_URL, GITHUB_URL, REMEMORY_URL } from '../links'
+import { COLOR_CRAFT_URL, GITHUB_URL } from '../links'
 import styles from './About.module.css'
 
 const PIPELINE = [
@@ -102,11 +102,7 @@ export function About() {
           Credits
         </h2>
         <p className={styles.credits}>
-          ColorizeGAN builds on{' '}
-          <a href={REMEMORY_URL} target="_blank" rel="noreferrer">
-            ReMemory AI
-          </a>{' '}
-          by deepraj-07, which in turn builds on{' '}
+          The generator architecture builds on{' '}
           <a href={COLOR_CRAFT_URL} target="_blank" rel="noreferrer">
             Color Craft GAN
           </a>{' '}

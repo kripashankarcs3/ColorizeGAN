@@ -19,7 +19,8 @@ Start every session by reading `PLAN.md`. Find the first phase whose
   (`kripashankarcs3/ColorizeGAN`).
 - Commits and PRs carry only the owner's identity: no AI co-author lines and
   no "Generated with" footers.
-- Keep the README credit to ReMemory AI and Color Craft GAN.
+- Do not mention ReMemory AI anywhere (owner's decision). Keep the website
+  credit to Color Craft GAN for the generator architecture.
 - Run the tests before every push: `.venv\Scripts\python.exe -m pytest -q`,
   plus the web tests once `web/` exists.
 - The owner is a beginner/intermediate developer. End each phase with a short
