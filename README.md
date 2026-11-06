@@ -132,6 +132,27 @@ Images are downloaded to `dataset/train/color`, which `app/train.py` reads.
 The desktop gallery uses the included `app/test/Dog_GL.jpg` and
 `app/test/building_GL.jpg` as real inference inputs.
 
+## Website
+
+The `web/` folder is a browser version of the app: the generator runs locally
+through ONNX Runtime Web (WebAssembly), so photos never leave the device.
+
+Live site: _coming soon (link added after the first Vercel deploy)_
+
+Run it locally (Node 24):
+
+```bash
+cd web
+npm ci
+npm run dev          # dev server
+npm test             # unit and parity tests
+npm run test:e2e     # builds the site and runs the Playwright browser tests
+```
+
+**Deploy on Vercel:** import the repository in the Vercel dashboard. The root
+`vercel.json` sets the install and build commands, the `web/dist` output folder
+and the cache and security headers, so no other settings are needed.
+
 ## Limitations and future scope
 
 This compact model was trained for fixed 120-pixel inputs, so fine detail and

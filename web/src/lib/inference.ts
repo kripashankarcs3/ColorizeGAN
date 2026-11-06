@@ -3,15 +3,17 @@
 // app/colorize.py. It runs inside the Web Worker (see colorize.worker.ts).
 
 import * as ort from 'onnxruntime-web/wasm'
+// Vite emits the WASM binary as a hashed, immutable asset and gives us its URL.
+import wasmUrl from 'onnxruntime-web/ort-wasm-simd-threaded.wasm?url'
 import { MODEL_SIZE, inputShape } from './preprocess'
 
 const BASE = import.meta.env.BASE_URL
 export const MODEL_URL = `${BASE}models/colorize.onnx`
 
-// Serve the WASM binary from our own public/ort/ folder instead of a CDN.
+// Serve the WASM binary from our own build output (a hashed asset) instead of a CDN.
 // Workers resolve relative URLs against the worker script, so make it absolute.
 ort.env.wasm.wasmPaths = {
-  wasm: new URL(`${BASE}ort/ort-wasm-simd-threaded.wasm`, self.location.origin).href,
+  wasm: new URL(wasmUrl, self.location.origin).href,
 }
 // Multi-threading needs cross-origin isolation headers; one thread is plenty
 // for a 120 x 120 model and works on every host.

@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f3f3f3" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1b1b1b" media="(prefers-color-scheme: dark)" />
@@ -13,6 +15,30 @@
       content="Colorize black-and-white photos with a small GAN that runs entirely in your browser. Your photos never leave your device."
     />
     <title>ColorizeGAN: colorize black-and-white photos in your browser</title>
+    <!-- No canonical link yet: add one once there is a final domain. -->
+    <!--
+      TODO: Open Graph / Twitter need an ABSOLUTE image URL. __SITE_URL__ is replaced at
+      build time (vite.config.ts) with https://$VERCEL_PROJECT_PRODUCTION_URL on Vercel,
+      and with nothing (a relative path) elsewhere. Hard-code the real domain once it exists.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ColorizeGAN" />
+    <meta property="og:title" content="ColorizeGAN: colorize black-and-white photos in your browser" />
+    <meta
+      property="og:description"
+      content="Colorize black-and-white photos with a small GAN that runs entirely in your browser. Your photos never leave your device."
+    />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A black-and-white puppy photo before and after colorization." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ColorizeGAN: colorize black-and-white photos in your browser" />
+    <meta
+      name="twitter:description"
+      content="Colorize black-and-white photos with a small GAN that runs entirely in your browser. Your photos never leave your device."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
     <script>
       // Apply a saved light/dark choice before the first paint (no flash).
       try {
