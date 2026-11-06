@@ -140,11 +140,6 @@ color, not historical truth. Future work could add richer datasets, perceptual
 and adversarial generator losses, batch processing, interactive comparison
 sliders, and an independently reproducible training/evaluation pipeline.
 
-## Acknowledgements
-
-Based on the [ReMemory AI](https://github.com/deepraj-07/ReMemory-AI) project,
-which builds on [Color Craft GAN](https://github.com/Asirwad/Color-Craft-GAN).
-
 ## License
 
 Released under the [MIT License](LICENSE).
