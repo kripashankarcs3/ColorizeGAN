@@ -5,3 +5,6 @@ tf2onnx==1.16.1
 onnx==1.16.2
 onnxruntime==1.19.2
 onnxconverter-common==1.16.0
+
+# Optional, for the LPIPS metric in tools/evaluate.py (skipped with a warning if missing):
+#   pip install "torch>=2,<3" "lpips>=0.1.4,<0.2"
