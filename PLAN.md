@@ -88,11 +88,9 @@ ColorizeGAN/
 Branch: `chore/repo-housekeeping`
 
 1. Merge the three open PRs into `main` in order.
-2. **License decision (must be settled before the site goes public).** The code
-   comes from ReMemory AI (deepraj-07), which builds on Color Craft GAN (Asirwad).
-   Neither has a LICENSE file, which legally means "all rights reserved". Ask the
-   original authors for permission or an MIT license. Keep the README credit
-   either way.
+2. **License decision.** Settled: the owner released the project under the MIT
+   License (`LICENSE`). The website credits Color Craft GAN (Asirwad) for the
+   generator architecture.
 3. Make `setup.bat` fall back to `uv python find 3.11` when `py -3.11` is not
    available.
 4. Add GitHub Actions CI that runs `pytest` on push and PR. It gets extended

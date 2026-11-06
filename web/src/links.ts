@@ -1,6 +1,5 @@
 // External links used in more than one place.
 export const GITHUB_URL = 'https://github.com/kripashankarcs3/ColorizeGAN'
-export const REMEMORY_URL = 'https://github.com/deepraj-07/ReMemory-AI'
 export const COLOR_CRAFT_URL = 'https://github.com/Asirwad/Color-Craft-GAN'
 
 /** Bundled sample photos in public/samples/. */

@@ -32,6 +32,10 @@
   --accent-soft: #fbefdd;
   --focus: #b86500;
 
+  /* Logo: the grey half matches the amber half's luminance */
+  --logo-grey: #8c8c8c;
+  --logo-tone: #c97a16;
+
   /* Status */
   --success: #23764a;
   --danger: #b42318;
@@ -66,6 +70,8 @@
     --accent-strong: #f6bd66;
     --accent-soft: #3a2c17;
     --focus: #f0a83c;
+    --logo-grey: #b6b6b6;
+    --logo-tone: #f0a83c;
     --success: #5cc48a;
     --danger: #ff8a7a;
     --danger-soft: #2e1b19;
@@ -96,6 +102,8 @@
   --accent-strong: #f6bd66;
   --accent-soft: #3a2c17;
   --focus: #f0a83c;
+  --logo-grey: #b6b6b6;
+  --logo-tone: #f0a83c;
   --success: #5cc48a;
   --danger: #ff8a7a;
   --danger-soft: #2e1b19;

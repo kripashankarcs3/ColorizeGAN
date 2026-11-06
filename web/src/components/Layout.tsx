@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router'
-import { COLOR_CRAFT_URL, GITHUB_URL, REMEMORY_URL } from '../links'
+import { COLOR_CRAFT_URL, GITHUB_URL } from '../links'
 import { GitHubIcon, LockIcon, MenuIcon, MoonIcon, SunIcon, XIcon } from './Icons'
+import { LogoMark } from './Logo'
 import styles from './Layout.module.css'
 
 const NAV = [
@@ -17,8 +18,6 @@ const TITLES: Record<string, string> = {
   '/gallery': 'Gallery | ColorizeGAN',
   '/about': 'About | ColorizeGAN',
 }
-
-const base = import.meta.env.BASE_URL
 
 export function Layout() {
   const { pathname } = useLocation()
@@ -51,7 +50,7 @@ export function Layout() {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link to="/" className={styles.brand} aria-label="ColorizeGAN home">
-            <img src={`${base}logo.png`} alt="" width="24" height="24" />
+            <LogoMark size={24} />
             <span>ColorizeGAN</span>
           </Link>
 
@@ -103,7 +102,7 @@ export function Layout() {
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>
-            <img src={`${base}logo.png`} alt="" width="20" height="20" />
+            <LogoMark size={20} />
             <span>ColorizeGAN</span>
           </div>
           <p className={styles.privacy}>
@@ -111,15 +110,11 @@ export function Layout() {
             Your photos never leave your device. Everything runs in your browser.
           </p>
           <p className={styles.credits}>
-            Built on{' '}
-            <a href={REMEMORY_URL} target="_blank" rel="noreferrer">
-              ReMemory AI
-            </a>{' '}
-            and{' '}
+            Model architecture based on{' '}
             <a href={COLOR_CRAFT_URL} target="_blank" rel="noreferrer">
               Color Craft GAN
             </a>
-            .{' '}
+            <span aria-hidden="true"> · </span>
             <a href={GITHUB_URL} target="_blank" rel="noreferrer">
               Source on GitHub
             </a>
