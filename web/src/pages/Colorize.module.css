@@ -1,0 +1,304 @@
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-10);
+  margin-bottom: var(--space-8);
+}
+
+.title {
+  font-size: var(--text-3xl);
+}
+
+.subtitle {
+  margin-top: var(--space-2);
+  max-width: 56ch;
+  color: var(--text-muted);
+}
+
+.status {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 24px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Workspace: toolbar + viewer + metadata ---------- */
+.workspace {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.workspace[data-empty] {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.workspace[data-empty] .toolbar {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.toolbarActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Segmented control: Compare / Side by side */
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+}
+
+.segmented button {
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 550;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+
+.segmented button:hover {
+  color: var(--text);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Indeterminate progress line under the toolbar while the model runs. */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  margin-top: -1px;
+  overflow: hidden;
+  background: var(--border);
+  z-index: 1;
+}
+
+.progress::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 30%;
+  background: var(--accent);
+  animation: run 1.2s var(--ease-out) infinite;
+}
+
+@keyframes run {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress::after {
+    width: 100%;
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+.viewer {
+  padding: var(--space-4);
+  background: var(--bg-sunken);
+}
+
+/* Shrink-wrap the slider to the photo so labels sit on the image. */
+.compareSlider {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.compareSlider img {
+  width: auto;
+  max-width: 100%;
+  height: min(68vh, 640px);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.paneTitle {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  letter-spacing: 0;
+  color: var(--text-muted);
+}
+
+.imageBox {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  background: var(--image-well);
+  overflow: hidden;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 28ch;
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-sm);
+}
+
+.metaList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-6);
+  margin: 0;
+  min-width: 0;
+}
+
+.metaList > div {
+  display: flex;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.metaList dt {
+  color: var(--text-faint);
+}
+
+.metaList dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.fileName {
+  max-width: 28ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timing {
+  color: var(--text-muted);
+}
+
+.timing:empty {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .status {
+    justify-content: flex-start;
+  }
+
+  .toolbar,
+  .toolbarActions {
+    width: 100%;
+  }
+
+  .toolbarActions > * {
+    flex: 1 1 auto;
+  }
+
+  .toolbarActions > :first-child {
+    flex-basis: 100%;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .segmented button {
+    flex: 1;
+  }
+
+  .viewer {
+    padding: var(--space-3);
+  }
+
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .compareSlider {
+    width: 100%;
+  }
+
+  .compareSlider img {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "source": "building_GL.jpg",
+  "input_shape": [
+    1,
+    120,
+    120,
+    1
+  ],
+  "output_shape": [
+    1,
+    120,
+    120,
+    3
+  ],
+  "dtype": "float32 little-endian",
+  "tolerance": 0.0001
+}
