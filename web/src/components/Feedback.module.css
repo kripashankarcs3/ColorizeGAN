@@ -1,0 +1,137 @@
+.spinner {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.notice {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 0.93rem;
+}
+
+.icon {
+  flex: none;
+  margin-top: 2px;
+}
+
+.error {
+  background: var(--danger-soft);
+  border-color: rgb(248 113 113 / 0.45);
+}
+
+.error .icon {
+  color: var(--danger);
+}
+
+.info {
+  background: var(--warning-soft);
+  border-color: rgb(251 191 36 / 0.4);
+}
+
+.info .icon {
+  color: var(--warning);
+}
+
+.title {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.body {
+  color: #e2e8f0;
+}
+
+.action {
+  margin-top: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  color: var(--text-muted);
+}
+
+.ready .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px rgb(52 211 153 / 0.18);
+}
+
+.loading {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.loadingRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent-text);
+}
+
+.loadingRow > span:last-child {
+  color: var(--text);
+}
+
+.muted {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  margin-left: 4px;
+}
+
+.bar {
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gradient);
+  transition: width 0.2s ease;
+}
+
+.indeterminate {
+  width: 35%;
+  animation: slide 1.2s ease-in-out infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}

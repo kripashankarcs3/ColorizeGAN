@@ -1,0 +1,75 @@
+.zone {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 1.5px dashed rgb(59 130 246 / 0.7);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(400px 120px at 0% 0%, rgb(59 130 246 / 0.12), transparent 70%),
+    var(--bg-raised);
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.dragging {
+  border-color: var(--cyan);
+  background-color: var(--accent-soft);
+  transform: scale(1.01);
+}
+
+.compact {
+  padding: 14px 18px;
+  border-style: dashed;
+  border-color: var(--border-strong);
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--cyan);
+}
+
+.compact .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 650;
+  font-size: 1.05rem;
+}
+
+.compact .title {
+  font-size: 0.95rem;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 560px) {
+  .zone {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 18px;
+  }
+
+  .zone :global(.btn) {
+    width: 100%;
+  }
+}
