@@ -62,7 +62,7 @@ def colorize(
         )
 
     color_array = np.clip(prediction[0], 0.0, 1.0)
-    colorized = Image.fromarray((color_array * 255).astype(np.uint8), mode="RGB")
+    colorized = Image.fromarray((color_array * 255).astype(np.uint8))
     colorized = colorized.resize(original_size, Image.Resampling.LANCZOS)
     destination = (
         Path(output_path).expanduser().resolve()

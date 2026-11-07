@@ -124,10 +124,15 @@ class MainWindow(QMainWindow):
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(18, 12, 18, 12)
 
-        logo = QLabel("C")
+        logo = QLabel()
         logo.setObjectName("logoMark")
         logo.setAlignment(Qt.AlignCenter)
         logo.setFixedSize(38, 38)
+        logo.setPixmap(
+            QPixmap(str(ASSET_ROOT / "logo.png")).scaled(
+                38, 38, Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+        )
         header_layout.addWidget(logo)
 
         brand_layout = QVBoxLayout()
