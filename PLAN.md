@@ -10,26 +10,22 @@ only "done" when every item under **Done when** has been checked.
 
 ---
 
-## Where things stand (2026-11-03)
+## Where things stand (2026-11-07)
 
 | Item | State |
 |---|---|
-| Repo | `github.com/kripashankarcs3/ColorizeGAN`, history contains only the owner's commits |
-| `main` | Initial import only |
-| `chore/rename-to-colorizegan` | Pushed, **PR not merged**: ColorizeGAN name, new icon, old branding removed |
-| `fix/inference-cache-and-training-cleanup` | Pushed, **PR not merged**: model caching, training cleanup, 6 tests |
-| `docs/web-roadmap` | This plan and `CLAUDE.md` |
-| Tests | `pytest`: 6 passed |
-| Model | `app/model/CCGAN_Model.h5`, 5.7 MB, input `120x120x1` grey to output `120x120x3` RGB, values 0 to 1 |
-
-The three branches are stacked. Merge them into `main` **in this order**:
-rename, then fix, then docs.
+| Repo | `github.com/kripashankarcs3/ColorizeGAN`, only `main`, every PR merged |
+| Phases 0-3 | Done: MIT license, ONNX export with parity check, web app, unit + e2e tests, CI |
+| Phase 4 | Config ready (`vercel.json`). **Waiting on the owner** to import the repo on vercel.com |
+| Phase 5 | Code ready (`app/archs/v2.py`, `app/train_v2.py`, Colab notebook). **Waiting on a GPU training run** |
+| Phase 6 | `tools/evaluate.py` ready, runs after v2 is trained |
+| Tests | `pytest`: 19 passed, 1 skipped. Web: 24 unit + 3 e2e |
+| Model | v1 `app/model/CCGAN_Model.h5`, `120x120x1` grey to `120x120x3` RGB, served as `web/public/models/colorize.onnx` |
 
 ### Local environment notes
 
 - Python comes from uv: CPython 3.11.16, installed under `%APPDATA%\uv\python\`.
-  `py -3.11` is not installed, so `setup.bat` fails on this machine. The `.venv`
-  was created directly with that interpreter. Phase 0 fixes `setup.bat`.
+  `py -3.11` is not installed; `setup.bat` falls back to `uv python find 3.11`.
 - Node 24 and npm 11 are installed, which the web app needs.
 - Run tests: `.venv\Scripts\python.exe -m pytest -q`
 

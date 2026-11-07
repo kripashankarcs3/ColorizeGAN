@@ -16,11 +16,7 @@ QWidget {
 }
 
 #logoMark {
-    background: #3B82F6;
-    color: #FFFFFF;
-    border-radius: 11px;
-    font-size: 22px;
-    font-weight: bold;
+    background: transparent;
 }
 
 #brand {
